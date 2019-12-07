@@ -1,8 +1,10 @@
 sudo: required
+os: linux
+language: javascript
 services:
   - docker
 before_install:
   - docker build -t amirftma/docker-react -f Dockerfile.dev .
 
 script:
-  - docker run amirftma/docker-react npm run test -- --coverage
+  - docker run -e CI=true amirftma/docker-react npm run test
